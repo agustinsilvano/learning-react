@@ -1,6 +1,6 @@
 import HomeButton from '../HomeButton/HomeButton';
 
-function NavBar() {
+const NavBar = () => {
     return (
         <div>
             <HomeButton></HomeButton>

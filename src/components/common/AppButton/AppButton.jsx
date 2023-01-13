@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 
-function AppButton({ text, onClick, variant = 'secondary', asLink = false }) {
+const AppButton = ({ text, onClick, variant = 'secondary', asLink = false }) => {
     const asButton = asLink ? 'a' : null;
 
     return (

@@ -1,7 +1,7 @@
 import './HomeButton.css'
 import AppButton from '../../common/AppButton/AppButton';
 
-function HomeButton() {
+const HomeButton = () => {
     const onClick = () => {
         console.log("hey!")
     }
