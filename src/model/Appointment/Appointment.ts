@@ -7,7 +7,7 @@ export class Appointment {
 	/**
 	 *
 	 */
-	constructor(id, title, beginDate, endDate) {
+	constructor(id: string, title: string, beginDate: Date, endDate: Date) {
 		this.id = id;
 		this.title = title;
 		this.beginDate = beginDate;

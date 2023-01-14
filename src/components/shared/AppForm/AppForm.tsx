@@ -1,15 +1,19 @@
-const AppForm = (props) => {
+import { IHasChildrenElement, IOnSubmit } from '../../../interfaces/Common';
 
-    const onSubmitHandler = (event) => {
+interface IAppForm extends IOnSubmit, IHasChildrenElement {
+}
+
+const AppForm: React.FC<IAppForm> = ({ onSubmit, children, ...props }: IAppForm) => {
+    const onSubmitHandler = (event: React.FormEvent) => {
         //TODO: Investigate why this base preventDefault is not working.
         event.preventDefault();
 
-        props.onSubmit(event);
+        onSubmit(event);
     }
 
     return (
         <form onSubmit={onSubmitHandler} {...props}>
-            {props.children}
+            {children}
         </form >
     )
 }

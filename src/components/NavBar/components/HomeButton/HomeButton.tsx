@@ -8,9 +8,8 @@ const HomeButton = () => {
 
     return (
         <AppButton
-            text="Home"
-            onClick={onClick}
-            asLink />
+            title='Home'
+            onClick={onClick} />
     )
 }
 

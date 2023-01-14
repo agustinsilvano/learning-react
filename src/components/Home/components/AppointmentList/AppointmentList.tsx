@@ -1,5 +1,8 @@
+import { IReadEntity } from '../../../../interfaces/Entity';
+
+interface IAppointmentList extends IReadEntity { }
 
 
-const AppointmentList = (props) => {
+const AppointmentList = (e: IAppointmentList) => {
 
 }

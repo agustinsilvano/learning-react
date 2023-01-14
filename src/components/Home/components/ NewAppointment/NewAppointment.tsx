@@ -1,32 +1,35 @@
 import { useState } from 'react';
+import { ICreateEntity } from '../../../../interfaces/Entity';
 import AppButton from '../../../shared/AppButton/AppButton';
 import AppForm from '../../../shared/AppForm/AppForm';
 import AppInput from '../../../shared/AppInput/AppInput';
 
-const NewAppointment = (props) => {
+interface INewAppointment extends ICreateEntity { }
+
+const NewAppointment = ({ onCreate }: INewAppointment) => {
     const [title, setTitle] = useState('');
     const [beginDate, setBeginDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
-    const onTitleChangedHandler = (event) => {
-        setTitle(event.target.value);
+    const onTitleChangedHandler = (event: React.FormEvent<HTMLInputElement>) => {
+        setTitle(event.currentTarget.value);
     }
 
-    const onBeginDateChangedHandler = (event) => {
-        setBeginDate(event.target.value);
+    const onBeginDateChangedHandler = (event: React.FormEvent<HTMLInputElement>) => {
+        setBeginDate(event.currentTarget.value);
     }
 
-    const onEndDateChangedHandler = (event) => {
-        setEndDate(event.target.value);
+    const onEndDateChangedHandler = (event: React.FormEvent<HTMLInputElement>) => {
+        setEndDate(event.currentTarget.value);
     }
 
-    const onSubmitHandler = (event) => {
+    const onSubmitHandler = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
         console.log('Submitting...')
 
         debugger;
 
-        props.onSaveHandler()
+        onCreate();
     }
 
     return (

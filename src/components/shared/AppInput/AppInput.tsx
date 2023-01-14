@@ -1,18 +1,16 @@
 import { IHasId, IHasTitle, IHasType, IHasValue, IOnChange } from '../../../interfaces/Common';
 
-interface IAppInput extends IHasId, IHasTitle, IHasType, IHasValue, IOnChange {
-}
+interface IAppInput extends IHasId, IHasTitle, IHasType, IHasValue, IOnChange { }
 
-
-const AppInput = (props: IAppInput) => {
+const AppInput: React.FC<IAppInput> = ({ id, title, type, value, onChange, ...props }: IAppInput) => {
     return (
         <div>
-            <label htmlFor={props.id}> {props.title}</label>
+            <label htmlFor={id}> {title}</label>
             <input
-                id={props.id}
-                type={props.type}
-                onChange={props.onChange}
-                value={props.value}
+                id={id}
+                type={type}
+                onChange={onChange}
+                value={value}
                 {...props}
             />
         </div>

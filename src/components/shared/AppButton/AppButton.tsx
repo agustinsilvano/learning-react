@@ -1,10 +1,13 @@
-import Button from 'react-bootstrap/Button';
+import { IHasButtonType, IHasOnClick, IHasTitle } from '../../../interfaces/Common';
 
-const AppButton = ({ text = "Save", type, onClick, asLink = false, ...props }) => {
+interface IAppButton extends IHasTitle, IHasButtonType, IHasOnClick {
+}
+
+const AppButton = ({ title = "Save", type, onClick, ...props }: IAppButton) => {
 
     return (
         <button onClick={onClick} type={type} {...props}>
-            {text}
+            {title}
         </button >
     );
 }

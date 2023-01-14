@@ -1,23 +1,38 @@
-export interface IHasChildElement {
+import { ChangeEventHandler, MouseEventHandler } from 'react';
+
+export interface IHasChildrenElement {
 	children?: React.ReactNode;
 }
 
 export interface IHasId {
-	id: string;
+	id?: string;
 }
 
 export interface IHasTitle {
-	title: string;
+	title?: string | undefined;
 }
 
 export interface IHasType {
-	type: string;
+	type?: string;
+}
+
+export interface IHasButtonType {
+	type?: 'submit' | 'reset' | 'button' | undefined;
 }
 
 export interface IHasValue {
-	value: string;
+	value?: string;
 }
 
 export interface IOnChange {
-	onChange: void;
+	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+}
+
+export interface IOnSubmit {
+	//TODO: Replace the `any` for the corresponding type.
+	onSubmit?: any;
+}
+
+export interface IHasOnClick {
+	onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
