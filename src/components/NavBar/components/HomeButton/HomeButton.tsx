@@ -1,5 +1,5 @@
 import './HomeButton.css'
-import AppButton from '../../common/AppButton/AppButton';
+import AppButton from '../../../shared/AppButton/AppButton';
 
 const HomeButton = () => {
     const onClick = () => {
