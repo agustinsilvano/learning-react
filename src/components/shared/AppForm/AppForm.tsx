@@ -1,4 +1,5 @@
 import { IHasChildrenElement, IOnSubmit } from '../../../interfaces/Common';
+import './AppForm.css'
 
 interface IAppForm extends IOnSubmit, IHasChildrenElement {
 }
@@ -12,7 +13,7 @@ const AppForm: React.FC<IAppForm> = ({ onSubmit, children, ...props }: IAppForm)
     }
 
     return (
-        <form onSubmit={onSubmitHandler} {...props}>
+        <form onSubmit={onSubmitHandler} className="form" {...props}>
             {children}
         </form >
     )

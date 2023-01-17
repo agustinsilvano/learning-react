@@ -2,8 +2,9 @@ export interface ICreateEntity {
 	onCreate?: any;
 }
 
-export interface IReadEntity {
+export interface IReadEntity<T> {
 	onRead?: any;
+	items: T[];
 }
 
 export interface IUpdateEntity {
@@ -14,4 +15,4 @@ export interface IDeleteEntity {
 	onDelete?: any;
 }
 
-export interface ICrudEntity extends ICreateEntity, IReadEntity, IUpdateEntity, IDeleteEntity {}
+export interface ICrudEntity<T> extends ICreateEntity, IReadEntity<T>, IUpdateEntity, IDeleteEntity {}

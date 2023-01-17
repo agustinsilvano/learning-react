@@ -10,6 +10,7 @@ export interface IHasId {
 
 export interface IHasTitle {
 	title?: string | undefined;
+	// onTitleChange: ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export interface IHasType {
@@ -22,10 +23,11 @@ export interface IHasButtonType {
 
 export interface IHasValue {
 	value?: string;
+	// onValueChange: ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export interface IOnChange {
-	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+	onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 export interface IOnSubmit {
@@ -33,6 +35,14 @@ export interface IOnSubmit {
 	onSubmit?: any;
 }
 
-export interface IHasOnClick {
+export interface IOnClick {
 	onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+}
+
+export interface IOnSearch {
+	onSearch: any;
+}
+
+export interface IIsRequired {
+	isRequired?: boolean;
 }

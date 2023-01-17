@@ -1,19 +1,33 @@
-import { IHasId, IHasTitle, IHasType, IHasValue, IOnChange } from '../../../interfaces/Common';
+import { ChangeEvent, useState } from 'react';
+import { IHasId, IHasTitle, IHasType, IHasValue, IIsRequired, IOnChange } from '../../../interfaces/Common';
+import './AppInput.css'
 
-interface IAppInput extends IHasId, IHasTitle, IHasType, IHasValue, IOnChange { }
+interface IAppInput extends IHasId, IHasTitle, IHasType, IHasValue, IOnChange, IIsRequired {
+}
 
-const AppInput: React.FC<IAppInput> = ({ id, title, type, value, onChange, ...props }: IAppInput) => {
+const AppInput: React.FC<IAppInput> = ({ id, title, type, value, onChange, isRequired = false, ...props }: IAppInput) => {
+
+    const [isValid, setIsValid] = useState(true);
+
+    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+
+        if (isRequired)
+            setIsValid(event.target.value.trim().length != 0);
+
+        onChange(event);
+    }
+
     return (
-        <div>
-            <label htmlFor={id}> {title}</label>
+        <div className={`${!isValid ? 'invalid' : ''}`} >
+            <label htmlFor={id}> {`${title} ${isRequired ? '*' : ''}`}</label>
             <input
                 id={id}
                 type={type}
-                onChange={onChange}
+                onChange={onChangeHandler}
                 value={value}
                 {...props}
             />
-        </div>
+        </div >
     )
 }
 
