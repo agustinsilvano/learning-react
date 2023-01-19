@@ -3,7 +3,7 @@ import { IOnSearch } from '../../../../../../../interfaces/Common'
 import { SearchAppointment } from '../../../../../../../models/Appointment/SearchAppointment';
 import AppButton from '../../../../../../shared/AppButton/AppButton';
 import AppInput from '../../../../../../shared/AppInput/AppInput';
-import './AppointmentFilter.css'
+import style from './AppointmentFilter.module.scss'
 
 interface IAppointmentFilter extends IOnSearch {
 }
@@ -39,7 +39,7 @@ const AppointmentFilter = (props: IAppointmentFilter) => {
     }
 
     return (
-        <div className='appointment__filter'>
+        <div className={style.appointment__filter} >
             <AppInput
                 title='Filter'
                 type='filter'
@@ -63,7 +63,7 @@ const AppointmentFilter = (props: IAppointmentFilter) => {
                 type='submit'
                 onClick={onSearchHandler}
             />
-        </div>
+        </div >
     )
 }
 

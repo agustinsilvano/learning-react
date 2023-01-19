@@ -1,5 +1,5 @@
 import { IHasButtonType, IOnClick, IHasTitle } from '../../../interfaces/Common';
-import styles from './AppButton.module.css'
+import styles from './AppButton.module.scss'
 
 
 interface IAppButton extends IHasTitle, IHasButtonType, IOnClick {
