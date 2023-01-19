@@ -15,9 +15,7 @@ const Home = () => {
     const onCreateNewAppointmentHandler = (appointment: Appointment) => {
         setAppointments((prevState) => {
             return [...prevState, appointment]
-        }
-            
-        
+        });
     }
 
     return (
