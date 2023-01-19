@@ -18,7 +18,7 @@ const AppointmentList = ({ items }: IAppointmentList) => {
         setAppointments(items);
     }, [items])
 
-    const listPayload = appointments?.length == 0 ?
+    const listPayload = appointments?.length === 0 ?
         <AppEmptyCollection /> :
         appointments?.map(a => (
             <AppointmentItem

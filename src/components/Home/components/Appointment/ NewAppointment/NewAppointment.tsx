@@ -73,6 +73,7 @@ const NewAppointment = ({ onCreate }: INewAppointment) => {
             />
             <AppButton
                 type="submit"
+                disabled
             />
         </AppForm>
     )

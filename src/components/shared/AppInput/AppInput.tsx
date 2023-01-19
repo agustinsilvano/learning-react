@@ -12,7 +12,7 @@ const AppInput: React.FC<IAppInput> = ({ id, title, type, value, onChange, isReq
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 
         if (isRequired)
-            setIsValid(event.target.value.trim().length != 0);
+            setIsValid(event.target.value.trim().length !== 0);
 
         onChange(event);
     }

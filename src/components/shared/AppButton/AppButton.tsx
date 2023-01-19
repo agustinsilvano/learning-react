@@ -1,38 +1,17 @@
-import styled from 'styled-components';
 import { IHasButtonType, IOnClick, IHasTitle } from '../../../interfaces/Common';
+import styles from './AppButton.module.css'
 
 
 interface IAppButton extends IHasTitle, IHasButtonType, IOnClick {
+    disabled?: boolean;
 }
 
-//Using styled components.
-const Button = styled.button`
-font: inherit;
-color: white;
-background: white;
-color: grey;
-cursor: pointer;
-border-color: #a8a8a8;
-border-radius: 3px;
-
-&:focus {
-    outline: none;
-}
-
-&:hover,
-&:active {
-    background: green;
-    border-color: white;
-}
-`;
-
-
-const AppButton = ({ title = "Save", type, onClick, ...props }: IAppButton) => {
+const AppButton = ({ title = "Save", type, onClick, disabled = false, ...props }: IAppButton) => {
 
     return (
-        <Button onClick={onClick} type={type} {...props}>
+        <button className={`${styles.button} ${disabled && styles.disabled}`} onClick={onClick} type={type} disabled={disabled} {...props}>
             {title}
-        </Button >
+        </button >
     );
 }
 
