@@ -1,11 +1,12 @@
 import { ChangeEvent, useState } from 'react';
-import { IHasId, IHasTitle, IHasType, IHasValue, IIsRequired, IOnChange } from '../../../interfaces/Common';
-import './AppInput.css'
+import { IHasId, IHasTitle, IHasType, IHasValue, IIsRequired, IOnChange } from 'interfaces/Common';
+import styles from './AppInput.module.scss'
 
 interface IAppInput extends IHasId, IHasTitle, IHasType, IHasValue, IOnChange, IIsRequired {
+    ref?: React.RefObject<HTMLInputElement>;
 }
 
-const AppInput: React.FC<IAppInput> = ({ id, title, type, value, onChange, isRequired = false, ...props }: IAppInput) => {
+const AppInput: React.FC<IAppInput> = ({ id, title, type, value, onChange, isRequired = false, ref, ...props }: IAppInput) => {
 
     const [isValid, setIsValid] = useState(true);
 
@@ -14,7 +15,7 @@ const AppInput: React.FC<IAppInput> = ({ id, title, type, value, onChange, isReq
         if (isRequired)
             setIsValid(event.target.value.trim().length !== 0);
 
-        onChange(event);
+        onChange && onChange(event);
     }
 
     return (
@@ -25,6 +26,7 @@ const AppInput: React.FC<IAppInput> = ({ id, title, type, value, onChange, isReq
                 type={type}
                 onChange={onChangeHandler}
                 value={value}
+                ref={ref}
                 {...props}
             />
         </div >

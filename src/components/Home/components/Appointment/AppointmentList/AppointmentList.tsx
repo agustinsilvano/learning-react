@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { IReadEntity } from '../../../../../interfaces/Entity';
-import { Appointment } from '../../../../../models/Appointment/Appointment';
-import { SearchAppointment } from '../../../../../models/Appointment/SearchAppointment';
-import AppEmptyCollection from '../../../../shared/AppEmptyCollection/AppEmptyCollection';
+import { IReadEntity } from 'interfaces/Entity';
+import { Appointment } from 'models/Appointment/Appointment';
+import { SearchAppointment } from 'models/Appointment/SearchAppointment';
+import AppEmptyCollection from 'components/shared/AppEmptyCollection/AppEmptyCollection';
 import AppointmentFilter from './components/AppointmentFilter/AppointmentFilter';
 import AppointmentItem from './components/AppointmentItem/AppointmentItem';
 

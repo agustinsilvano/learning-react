@@ -1,4 +1,5 @@
-import { IHasTitle } from '../../../interfaces/Common';
+import { IHasTitle } from 'interfaces/Common';
+import styles from './AppEmptyCollection.module.scss'
 
 interface IAppEmptyCollection extends IHasTitle {
     subtitle?: string;

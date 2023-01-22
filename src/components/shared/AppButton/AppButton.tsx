@@ -1,4 +1,4 @@
-import { IHasButtonType, IOnClick, IHasTitle } from '../../../interfaces/Common';
+import { IHasButtonType, IOnClick, IHasTitle } from 'interfaces/Common';
 import styles from './AppButton.module.scss'
 
 

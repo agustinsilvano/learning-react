@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { APPOINTMENT_TYPES } from '../../helpers/Appointment/AppointmentTypes';
-import { Appointment } from '../../models/Appointment/Appointment';
+import { APPOINTMENT_TYPES } from 'helpers/Appointment/AppointmentTypes';
+import { Appointment } from 'models/Appointment/Appointment';
 import NewAppointment from './components/Appointment/ NewAppointment/NewAppointment';
 import AppointmentList from './components/Appointment/AppointmentList/AppointmentList';
 

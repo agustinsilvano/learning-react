@@ -1,4 +1,4 @@
-import { IHasTitle, IHasType } from '../../../../../../../interfaces/Common';
+import { IHasTitle, IHasType } from 'interfaces/Common';
 
 
 interface IAppointmentItem extends IHasTitle, IHasType {
@@ -9,7 +9,7 @@ interface IAppointmentItem extends IHasTitle, IHasType {
 const AppointmentItem = (props: IAppointmentItem) => {
 
     return (
-        <div>
+        <>
             <h2>
                 Title: {props.title}
             </h2>
@@ -20,7 +20,7 @@ const AppointmentItem = (props: IAppointmentItem) => {
                 At : {props.beginDate.toString()} - {props.endDate.toString()}
             </div>
 
-        </div>
+        </>
     );
 }
 

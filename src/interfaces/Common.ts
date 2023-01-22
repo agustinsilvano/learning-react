@@ -23,11 +23,10 @@ export interface IHasButtonType {
 
 export interface IHasValue {
 	value?: string;
-	// onValueChange: ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export interface IOnChange {
-	onChange: ChangeEventHandler<HTMLInputElement>;
+	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export interface IOnSubmit {

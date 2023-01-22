@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import { ICreateEntity } from '../../../../../interfaces/Entity';
-import { Appointment } from '../../../../../models/Appointment/Appointment';
-import { CreateUpdateAppointment } from '../../../../../models/Appointment/CreateUpdateAppointment';
-import AppButton from '../../../../shared/AppButton/AppButton';
-import AppForm from '../../../../shared/AppForm/AppForm';
-import AppInput from '../../../../shared/AppInput/AppInput';
+import { MutableRefObject, useRef, useState } from 'react';
+import { ICreateEntity } from 'interfaces/Entity';
+import { Appointment } from 'models/Appointment/Appointment';
+import { CreateUpdateAppointment } from 'models/Appointment/CreateUpdateAppointment';
+import AppButton from 'components/shared/AppButton/AppButton';
+import AppForm from 'components/shared/AppForm/AppForm';
+import AppInput from 'components/shared/AppInput/AppInput';
 
 
 interface INewAppointment extends ICreateEntity { }
 
 const NewAppointment = ({ onCreate }: INewAppointment) => {
+
     const [title, setTitle] = useState('');
-    const [type, setType] = useState('');
     const [beginDate, setBeginDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
+    //using ref for learning propouses. null type was added to do ref mutable object.
+    //TODO: Investigate why the useRef is not using by having the custom AppInput component.
+    const typeRef = useRef<HTMLInputElement>(null);
+
     const onTitleChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
         setTitle(event.currentTarget.value);
-    }
-
-    const onTypeChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-        setType(event.currentTarget.value);
     }
 
     const onBeginDateChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
@@ -31,8 +31,18 @@ const NewAppointment = ({ onCreate }: INewAppointment) => {
         setEndDate(event.currentTarget.value);
     }
 
+    const resetInputs = () => {
+        setTitle('');
+        if (typeRef.current)
+            typeRef.current.value = '';
+        setBeginDate('');
+        setEndDate('');
+    }
+
     const onSubmitHandler = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
+        debugger
+        const type: string = typeRef.current?.value ?? '';
 
         const createAppointment = new CreateUpdateAppointment(title, type, new Date(beginDate), new Date(endDate));
 
@@ -41,6 +51,8 @@ const NewAppointment = ({ onCreate }: INewAppointment) => {
         const appointment = new Appointment(id, title, type, new Date(beginDate), new Date(endDate));
 
         onCreate(appointment);
+
+        resetInputs();
     }
 
     return (
@@ -55,8 +67,7 @@ const NewAppointment = ({ onCreate }: INewAppointment) => {
             <AppInput
                 title="Type"
                 type="text"
-                value={type}
-                onChange={onTypeChangeHandler}
+                ref={typeRef}
                 isRequired
             />
             <AppInput

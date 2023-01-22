@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from 'react'
-import { IOnSearch } from '../../../../../../../interfaces/Common'
-import { SearchAppointment } from '../../../../../../../models/Appointment/SearchAppointment';
-import AppButton from '../../../../../../shared/AppButton/AppButton';
-import AppInput from '../../../../../../shared/AppInput/AppInput';
+import { IOnSearch } from 'interfaces/Common'
+import { SearchAppointment } from 'models/Appointment/SearchAppointment';
+import AppButton from 'components/shared/AppButton/AppButton';
+import AppInput from 'components/shared/AppInput/AppInput';
 import style from './AppointmentFilter.module.scss'
 
 interface IAppointmentFilter extends IOnSearch {
@@ -39,7 +39,7 @@ const AppointmentFilter = (props: IAppointmentFilter) => {
     }
 
     return (
-        <div className={style.appointment__filter} >
+        <div className={style['appointment__filter']} >
             <AppInput
                 title='Filter'
                 type='filter'
