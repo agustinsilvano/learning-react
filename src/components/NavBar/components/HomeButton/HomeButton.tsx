@@ -1,5 +1,5 @@
 import './HomeButton.css'
-import AppButton from '../../common/AppButton/AppButton';
+import AppButton from '../../../shared/AppButton/AppButton';
 
 const HomeButton = () => {
     const onClick = () => {
@@ -8,9 +8,8 @@ const HomeButton = () => {
 
     return (
         <AppButton
-            text="Home"
-            onClick={onClick}
-            asLink />
+            title='Home'
+            onClick={onClick} />
     )
 }
 

@@ -1,0 +1,24 @@
+label {
+	display: flex;
+	flex-wrap: wrap;
+	flex-basis: 100%;
+}
+
+input {
+	border-top: 0ch;
+	border-left: 0ch;
+	border-right: 0ch;
+}
+
+input:focus {
+	outline: none;
+}
+
+.invalid input {
+	border-color: red;
+	background: rgb(231, 196, 196);
+}
+
+.invalid label {
+	color: red;
+}

@@ -1,4 +1,4 @@
-import HomeButton from '../HomeButton/HomeButton';
+import HomeButton from './components/HomeButton/HomeButton';
 
 const NavBar = () => {
     return (
