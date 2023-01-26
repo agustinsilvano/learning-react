@@ -15,6 +15,9 @@ const AppForm: React.FC<IAppForm> = ({ onSubmit, children, ...props }: IAppForm)
         event.preventDefault();
 
         onSubmit(event);
+
+        //arbitrary logic to determine if there is error or not.
+        setIsError(Math.random() < 0.5);
     }
 
     return (

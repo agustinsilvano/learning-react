@@ -23,25 +23,23 @@ const AppToasterOverlay: React.FC<IAppToaster> = (props: IAppToaster) => {
 
 const AppToaster: React.FC<IAppToaster> = (props: IAppToaster) => {
 
-    const [visibilityCountDown, setVisibilityCountDown] = useState(props.visible);
+    const [timerIsActive, setTimerIsActive] = useState(props.visible);
 
     //TODO: Configure dotenv module.
-    const timeout: number = +(process.env.TOASTER_TIMEOUT || '3000');
+    const timerDuration: number = +(process.env.TOASTER_TIMEOUT || '3000');
 
     //useEffect used to hide the toaster message after X seconds;
     useEffect(() => {
         setTimeout(() => {
-            setVisibilityCountDown(false);
-        }, timeout);
-    });
-
-    const visible = props.visible && visibilityCountDown;
+            setTimerIsActive(false);
+        }, timerDuration);
+    }, []);
 
     const portalDiv: HTMLElement = document.getElementById('toaster-root')!;
     const toasterComponent: ReactElement<any, any> = <AppToasterOverlay
         title={props.title}
         isError={props.isError}
-        visible={visible} />
+        visible={props.visible && timerIsActive} />
 
     return (
         <>

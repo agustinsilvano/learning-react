@@ -1,13 +1,15 @@
-import { MutableRefObject, useRef, useState } from 'react';
+import { MutableRefObject, useReducer, useRef, useState } from 'react';
 import { ICreateEntity } from 'interfaces/Entity';
 import { Appointment } from 'models/Appointment/Appointment';
 import { CreateUpdateAppointment } from 'models/Appointment/CreateUpdateAppointment';
 import AppButton from 'components/shared/AppButton/AppButton';
 import AppForm from 'components/shared/AppForm/AppForm';
 import AppInput from 'components/shared/AppInput/AppInput';
+import { APPOINTMENT_VALUES_LIST } from 'helpers/Appointment/AppointmentTypes';
 
 
 interface INewAppointment extends ICreateEntity { }
+
 
 const NewAppointment = ({ onCreate }: INewAppointment) => {
 
@@ -41,7 +43,6 @@ const NewAppointment = ({ onCreate }: INewAppointment) => {
 
     const onSubmitHandler = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
-        debugger
         const type: string = typeRef.current?.value ?? '';
 
         const createAppointment = new CreateUpdateAppointment(title, type, new Date(beginDate), new Date(endDate));
@@ -55,6 +56,12 @@ const NewAppointment = ({ onCreate }: INewAppointment) => {
         resetInputs();
     }
 
+    //Function used to validate the title input, checks if title input starts with upper case char.
+    const titleValidator = (s: string): boolean => { return s.charAt(0) === s.charAt(0).toUpperCase(); }
+
+    //Function used to validate the type input, checks if the type value is included on the existing list.
+    const typeValidator = (s: string): boolean => { return APPOINTMENT_VALUES_LIST.some(v => v === s); }
+
     return (
         <AppForm onSubmit={onSubmitHandler}>
             <AppInput
@@ -62,13 +69,15 @@ const NewAppointment = ({ onCreate }: INewAppointment) => {
                 type="text"
                 value={title}
                 onChange={onTitleChangeHandler}
-                isRequired
+                validator={titleValidator}
+                isRequired={true}
             />
             <AppInput
                 title="Type"
                 type="text"
                 ref={typeRef}
-                isRequired
+                validator={typeValidator}
+                isRequired={true}
             />
             <AppInput
                 title="Begin Date"
