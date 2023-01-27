@@ -28,22 +28,22 @@ class AppInputState {
 
 type AppInputAction =
     //Action used to capture the user inputs.
-    | { type: 'USER_INPUT', value: string }
+    | { type: 'INPUT_CHANGED', value: string }
     //Action used to detect the change on the focus and perform the validations.
-    | { type: 'USER_BLUR' };
+    | { type: 'INPUT_BLUR' };
 
 function inputReducer(state: AppInputState, action: AppInputAction): AppInputState {
     switch (action.type) {
-        case 'USER_INPUT':
+        case 'INPUT_CHANGED':
             return new AppInputState(action.value, state.isValid, state.isRequired, state.validator);
-        case 'USER_BLUR':
+        case 'INPUT_BLUR':
             let isValid = !state.isRequired || DefaultInputValidator(state.value);
             if (state.validator) isValid = isValid && state.validator(state.value);
             return new AppInputState(state.value, isValid, state.isRequired, state.validator);
     }
-
-
 }
+
+const DEBOUNCING_RATE: number = 1000; //1 sec
 
 const AppInput: React.FC<IAppInput> = (props: IAppInput) => {
     const initialState = new AppInputState(props.value!, true, props.isRequired!, props.validator!);
@@ -52,44 +52,32 @@ const AppInput: React.FC<IAppInput> = (props: IAppInput) => {
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         //TODO: Check how to execute this handler.
-        dispatchReducer({ type: 'USER_INPUT', value: event.target.value })
+        dispatchReducer({ type: 'INPUT_CHANGED', value: event.target.value })
 
         // props.onChange && props.onChange(event);
     }
 
     const onBlurHandler = () => {
-        //TODO: Check how to execute this handler.
-        dispatchReducer({ type: 'USER_BLUR' })
+        dispatchReducer({ type: 'INPUT_BLUR' })
     }
 
-    //Debounce logic, keep it commented to keep track of this change.
-    // const [isValid, setIsValid] = useState(true);
-    // const [value, setValue] = useState(props.value);
-    // const DEBOUNCING_RATE: number = 1000; //1 sec
-    // useEffect(() => {
-    //     //Debouncing the input to perform the validations. 
-    //     const debouncer = setTimeout(() => {
-    //         //Set as valid if the field isnt required or if pass the validation.
-    //         setIsValid(!props?.isRequired || DefaultInputValidator(value!));
 
-    //         //If there is an external validator, execute it.
-    //         if (props.validator) {
-    //             setIsValid(props.validator(value!));
-    //         }
-    //     }, DEBOUNCING_RATE);
+    useEffect(() => {
+        const debouncer = setTimeout(() => {
+            console.log("Performing validation...")
+        }, DEBOUNCING_RATE);
 
-    //     //Using the clean-up function to reset the timer.
-    //     return () => {
-    //         clearTimeout(debouncer);
-    //     }
+        //Using the clean-up function to reset the timer.
+        return () => {
+            clearTimeout(debouncer);
+        }
 
-    // }, [value])
-
-
+    },
+        [inputState.isValid]);
 
     return (
         <div className={`${!inputState.isValid ? styles.invalid : ''}`} >
-            <label htmlFor={`${props.id}`}> {`${props.title} ${props.isRequired ? '*' : ' '}`}</label>
+            <label htmlFor={`${props.id}`}> {`${props.title} ${props.isRequired ? '*' : ''}`}</label>
             <input
                 id={`${props.id}`}
                 type={props.type}

@@ -11,7 +11,7 @@ import { APPOINTMENT_VALUES_LIST } from 'helpers/Appointment/AppointmentTypes';
 interface INewAppointment extends ICreateEntity { }
 
 
-const NewAppointment = ({ onCreate }: INewAppointment) => {
+const NewAppointment: React.FC<INewAppointment> = ({ onCreate }: INewAppointment) => {
 
     const [title, setTitle] = useState('');
     const [beginDate, setBeginDate] = useState('');

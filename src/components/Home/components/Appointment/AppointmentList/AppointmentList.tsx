@@ -11,7 +11,7 @@ interface IAppointmentList extends IReadEntity<Appointment> {
 }
 
 
-const AppointmentList = ({ items }: IAppointmentList) => {
+const AppointmentList: React.FC<IAppointmentList> = ({ items }: IAppointmentList) => {
     const [appointments, setAppointments] = useState<Appointment[]>(items);
 
     useEffect(() => {

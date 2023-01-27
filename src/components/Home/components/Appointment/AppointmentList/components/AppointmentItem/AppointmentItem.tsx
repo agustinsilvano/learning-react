@@ -6,7 +6,7 @@ interface IAppointmentItem extends IHasTitle, IHasType {
     endDate: Date;
 }
 
-const AppointmentItem = (props: IAppointmentItem) => {
+const AppointmentItem: React.FC<IAppointmentItem> = (props: IAppointmentItem) => {
 
     return (
         <>

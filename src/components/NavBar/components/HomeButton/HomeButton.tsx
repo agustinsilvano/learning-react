@@ -1,7 +1,7 @@
-import './HomeButton.css'
+import './HomeButton.module.scss'
 import AppButton from '../../../shared/AppButton/AppButton';
 
-const HomeButton = () => {
+const HomeButton: React.FC = () => {
     const onClick = () => {
         console.log("hey!")
     }

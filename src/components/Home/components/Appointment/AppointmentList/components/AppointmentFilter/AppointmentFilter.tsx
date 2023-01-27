@@ -8,7 +8,7 @@ import style from './AppointmentFilter.module.scss'
 interface IAppointmentFilter extends IOnSearch {
 }
 
-const AppointmentFilter = (props: IAppointmentFilter) => {
+const AppointmentFilter: React.FC<IAppointmentFilter> = (props: IAppointmentFilter) => {
 
     //Following one state approach.
     const [filter, setFilter] = useState<SearchAppointment>(new SearchAppointment());
