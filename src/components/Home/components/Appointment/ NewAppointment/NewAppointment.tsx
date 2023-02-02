@@ -1,4 +1,4 @@
-import { MutableRefObject, useReducer, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ICreateEntity } from 'interfaces/Entity';
 import { Appointment } from 'models/Appointment/Appointment';
 import { CreateUpdateAppointment } from 'models/Appointment/CreateUpdateAppointment';
@@ -11,7 +11,7 @@ import { APPOINTMENT_VALUES_LIST } from 'helpers/Appointment/AppointmentTypes';
 interface INewAppointment extends ICreateEntity { }
 
 
-const NewAppointment: React.FC<INewAppointment> = ({ onCreate }: INewAppointment) => {
+const NewAppointment: React.FC<INewAppointment> = (props: INewAppointment) => {
 
     const [title, setTitle] = useState('');
     const [beginDate, setBeginDate] = useState('');
@@ -51,7 +51,7 @@ const NewAppointment: React.FC<INewAppointment> = ({ onCreate }: INewAppointment
         const id: string = (Math.random() * 100).toPrecision(2);
         const appointment = new Appointment(id, title, type, new Date(beginDate), new Date(endDate));
 
-        onCreate(appointment);
+        props.onCreate(appointment);
 
         resetInputs();
     }
@@ -65,34 +65,34 @@ const NewAppointment: React.FC<INewAppointment> = ({ onCreate }: INewAppointment
     return (
         <AppForm onSubmit={onSubmitHandler}>
             <AppInput
-                title="Title"
-                type="text"
+                title='Title'
+                type='text'
                 value={title}
                 onChange={onTitleChangeHandler}
                 validator={titleValidator}
                 isRequired={true}
             />
             <AppInput
-                title="Type"
-                type="text"
+                title='Type'
+                type='text'
                 ref={typeRef}
                 validator={typeValidator}
                 isRequired={true}
             />
             <AppInput
-                title="Begin Date"
-                type="date"
+                title='Begin Date'
+                type='date'
                 value={beginDate?.toString()}
                 onChange={onBeginDateChangeHandler}
             />
             <AppInput
-                title="End Date"
-                type="date"
+                title='End Date'
+                type='date'
                 value={endDate?.toString()}
                 onChange={onEndDateChangeHandler}
             />
             <AppButton
-                type="submit"
+                type='submit'
             />
         </AppForm>
     )

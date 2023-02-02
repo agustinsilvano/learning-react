@@ -4,11 +4,14 @@ import { SearchAppointment } from 'models/Appointment/SearchAppointment';
 import AppButton from 'components/shared/AppButton/AppButton';
 import AppInput from 'components/shared/AppInput/AppInput';
 import style from './AppointmentFilter.module.scss'
+import React from 'react';
 
 interface IAppointmentFilter extends IOnSearch {
 }
 
 const AppointmentFilter: React.FC<IAppointmentFilter> = (props: IAppointmentFilter) => {
+
+    console.log("Rendering AppointmentFilter component.");
 
     //Following one state approach.
     const [filter, setFilter] = useState<SearchAppointment>(new SearchAppointment());
@@ -42,7 +45,7 @@ const AppointmentFilter: React.FC<IAppointmentFilter> = (props: IAppointmentFilt
         <div className={style['appointment__filter']} >
             <AppInput
                 title='Filter'
-                type='filter'
+                type='text'
                 value={filter?.filter}
                 onChange={onFilterChangeHandler}
             />
@@ -67,4 +70,4 @@ const AppointmentFilter: React.FC<IAppointmentFilter> = (props: IAppointmentFilt
     )
 }
 
-export default AppointmentFilter;
+export default React.memo(AppointmentFilter);

@@ -1,9 +1,9 @@
 import { ChangeEvent, useEffect, useReducer, useState } from 'react';
-import { IHasId, IHasTitle, IHasType, IHasValue, IIsRequired, IOnChange } from 'interfaces/Common';
+import { IHasId, IHasInputType, IHasTitle, IHasValue, IIsRequired, IOnBlur, IOnChange } from 'interfaces/Common';
 import styles from './AppInput.module.scss'
 import { DefaultInputValidator, InputValidator } from 'types/Validator';
 
-interface IAppInput extends IHasId, IHasTitle, IHasType, IHasValue, IOnChange, IIsRequired {
+interface IAppInput extends IHasId, IHasTitle, IHasInputType, IHasValue, IOnChange, IIsRequired, IOnBlur {
     ref?: React.RefObject<HTMLInputElement>;
     validator?: InputValidator;
 }

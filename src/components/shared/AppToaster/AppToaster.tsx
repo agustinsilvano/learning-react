@@ -1,7 +1,7 @@
 import { IHasTitle } from 'interfaces/Common';
 import styles from './AppToaster.module.scss'
 import ReactDOM from 'react-dom';
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 interface IAppToaster extends IHasTitle {
     isError?: boolean;
@@ -9,7 +9,7 @@ interface IAppToaster extends IHasTitle {
     visible?: boolean;
 }
 
-const AppToasterOverlay: React.FC<IAppToaster> = (props: IAppToaster) => {
+const AppToasterPrompt: React.FC<IAppToaster> = (props: IAppToaster) => {
 
     return (
         <div className={`${styles.toaster} ${props.isError ? styles.error : styles.success} ${!props.visible && styles.hidden}`}>
@@ -36,7 +36,7 @@ const AppToaster: React.FC<IAppToaster> = (props: IAppToaster) => {
     }, []);
 
     const portalDiv: HTMLElement = document.getElementById('toaster-root')!;
-    const toasterComponent: ReactElement<any, any> = <AppToasterOverlay
+    const toasterComponent: ReactElement<any, any> = <AppToasterPrompt
         title={props.title}
         isError={props.isError}
         visible={props.visible && timerIsActive} />

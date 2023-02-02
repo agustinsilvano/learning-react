@@ -1,4 +1,5 @@
 import { IHasButtonType, IOnClick, IHasTitle } from 'interfaces/Common';
+import React from 'react';
 import styles from './AppButton.module.scss'
 
 
@@ -15,4 +16,4 @@ const AppButton: React.FC<IAppButton> = ({ title = "Save", type, onClick, disabl
     );
 }
 
-export default AppButton;
+export default React.memo(AppButton);
