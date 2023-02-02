@@ -1,7 +1,7 @@
 import { IHasTitle } from 'interfaces/Common';
 import styles from './AppToaster.module.scss'
 import ReactDOM from 'react-dom';
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 interface IAppToaster extends IHasTitle {
     isError?: boolean;
@@ -9,7 +9,7 @@ interface IAppToaster extends IHasTitle {
     visible?: boolean;
 }
 
-const AppToasterOverlay: React.FC<IAppToaster> = (props: IAppToaster) => {
+const AppToasterPrompt: React.FC<IAppToaster> = (props: IAppToaster) => {
 
     return (
         <div className={`${styles.toaster} ${props.isError ? styles.error : styles.success} ${!props.visible && styles.hidden}`}>
@@ -23,25 +23,23 @@ const AppToasterOverlay: React.FC<IAppToaster> = (props: IAppToaster) => {
 
 const AppToaster: React.FC<IAppToaster> = (props: IAppToaster) => {
 
-    const [visibilityCountDown, setVisibilityCountDown] = useState(props.visible);
+    const [timerIsActive, setTimerIsActive] = useState(props.visible);
 
     //TODO: Configure dotenv module.
-    const timeout: number = +(process.env.TOASTER_TIMEOUT || '3000');
+    const timerDuration: number = +(process.env.TOASTER_TIMEOUT || '3000');
 
     //useEffect used to hide the toaster message after X seconds;
     useEffect(() => {
         setTimeout(() => {
-            setVisibilityCountDown(false);
-        }, timeout);
-    });
-
-    const visible = props.visible && visibilityCountDown;
+            setTimerIsActive(false);
+        }, timerDuration);
+    }, []);
 
     const portalDiv: HTMLElement = document.getElementById('toaster-root')!;
-    const toasterComponent: ReactElement<any, any> = <AppToasterOverlay
+    const toasterComponent: ReactElement<any, any> = <AppToasterPrompt
         title={props.title}
         isError={props.isError}
-        visible={visible} />
+        visible={props.visible && timerIsActive} />
 
     return (
         <>

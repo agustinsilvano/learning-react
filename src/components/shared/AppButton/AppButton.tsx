@@ -1,4 +1,5 @@
 import { IHasButtonType, IOnClick, IHasTitle } from 'interfaces/Common';
+import React from 'react';
 import styles from './AppButton.module.scss'
 
 
@@ -6,7 +7,7 @@ interface IAppButton extends IHasTitle, IHasButtonType, IOnClick {
     disabled?: boolean;
 }
 
-const AppButton = ({ title = "Save", type, onClick, disabled = false, ...props }: IAppButton) => {
+const AppButton: React.FC<IAppButton> = ({ title = "Save", type, onClick, disabled = false, ...props }: IAppButton) => {
 
     return (
         <button className={`${styles.button} ${disabled && styles.disabled}`} onClick={onClick} type={type} disabled={disabled} {...props}>
@@ -15,4 +16,4 @@ const AppButton = ({ title = "Save", type, onClick, disabled = false, ...props }
     );
 }
 
-export default AppButton;
+export default React.memo(AppButton);

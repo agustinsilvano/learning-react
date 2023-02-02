@@ -4,3 +4,5 @@ export const APPOINTMENT_TYPES = {
 	ACCOUNTING: 'Accounting',
 	OTHER: 'Other'
 };
+
+export const APPOINTMENT_VALUES_LIST = Object.entries(APPOINTMENT_TYPES).map(([k, v]) => v);

@@ -17,6 +17,32 @@ export interface IHasType {
 	type?: string;
 }
 
+export interface IHasInputType {
+	type?:
+		| 'button'
+		| 'checkbox'
+		| 'color'
+		| 'date'
+		| 'datetime-local'
+		| 'email'
+		| 'file'
+		| 'hidden'
+		| 'image'
+		| 'month'
+		| 'number'
+		| 'password'
+		| 'radio'
+		| 'range'
+		| 'reset'
+		| 'search'
+		| 'submit'
+		| 'tel'
+		| 'text'
+		| 'time'
+		| 'url'
+		| 'week';
+}
+
 export interface IHasButtonType {
 	type?: 'submit' | 'reset' | 'button' | undefined;
 }
@@ -39,7 +65,11 @@ export interface IOnClick {
 }
 
 export interface IOnSearch {
-	onSearch: any;
+	onSearch?: any;
+}
+
+export interface IOnBlur {
+	onBlur?: any;
 }
 
 export interface IIsRequired {

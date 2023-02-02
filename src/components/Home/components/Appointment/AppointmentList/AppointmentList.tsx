@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IReadEntity } from 'interfaces/Entity';
 import { Appointment } from 'models/Appointment/Appointment';
 import { SearchAppointment } from 'models/Appointment/SearchAppointment';
@@ -11,7 +11,7 @@ interface IAppointmentList extends IReadEntity<Appointment> {
 }
 
 
-const AppointmentList = ({ items }: IAppointmentList) => {
+const AppointmentList: React.FC<IAppointmentList> = ({ items }: IAppointmentList) => {
     const [appointments, setAppointments] = useState<Appointment[]>(items);
 
     useEffect(() => {
@@ -29,11 +29,11 @@ const AppointmentList = ({ items }: IAppointmentList) => {
                 endDate={a.endDate} />
         ));
 
-
-    const onFiltersChangeHandler = (filter: SearchAppointment) => {
+    //Using callback to store the function and use the under the hood Appointment Filter memo component.
+    const onFiltersChangeHandler = useCallback((filter: SearchAppointment) => {
         //Call the service with the filter object.
         console.table(filter);
-    }
+    }, []);
 
     return (
         <>
