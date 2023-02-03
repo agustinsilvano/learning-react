@@ -51,6 +51,10 @@ const NewAppointment: React.FC<INewAppointment> = (props: INewAppointment) => {
         const id: string = (Math.random() * 100).toPrecision(2);
         const appointment = new Appointment(id, title, type, new Date(beginDate), new Date(endDate));
 
+        if (Math.random() < 0.5) {
+            throw new Error("Something went wrong, try again later...")
+        }
+
         props.onCreate(appointment);
 
         resetInputs();
