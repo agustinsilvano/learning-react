@@ -3,6 +3,8 @@ import { APPOINTMENT_TYPES } from 'helpers/Appointment/AppointmentTypes';
 import { Appointment } from 'models/Appointment/Appointment';
 import NewAppointment from './components/Appointment/ NewAppointment/NewAppointment';
 import AppointmentList from './components/Appointment/AppointmentList/AppointmentList';
+import AppointmentErrorBoundary from './components/Appointment/ErrorBoundary/ErrorBoundary';
+
 
 const Home: React.FC = () => {
     const INITIAL_APPOINTMENTS: Appointment[] = [
@@ -20,9 +22,11 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <NewAppointment onCreate={onCreateNewAppointmentHandler}></NewAppointment>
-            <AppointmentList
-                items={appointments} />
+            <AppointmentErrorBoundary>
+                <NewAppointment onCreate={onCreateNewAppointmentHandler}></NewAppointment>
+                <AppointmentList
+                    items={appointments} />
+            </AppointmentErrorBoundary>
         </>
     )
 }

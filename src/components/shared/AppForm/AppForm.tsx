@@ -1,5 +1,4 @@
 import { IHasChildrenElement, IOnSubmit } from 'interfaces/Common';
-import { useState } from 'react';
 import AppToaster from '../AppToaster/AppToaster';
 import styles from './AppForm.module.scss'
 
@@ -8,8 +7,6 @@ interface IAppForm extends IOnSubmit, IHasChildrenElement {
 
 const AppForm: React.FC<IAppForm> = ({ onSubmit, children, ...props }: IAppForm) => {
 
-    const [isError, setIsError] = useState(false);
-
     const onSubmitHandler = (event: React.FormEvent) => {
         //TODO: Investigate why this base preventDefault is not working.
         event.preventDefault();
@@ -17,7 +14,9 @@ const AppForm: React.FC<IAppForm> = ({ onSubmit, children, ...props }: IAppForm)
         onSubmit(event);
 
         //arbitrary logic to determine if there is error or not.
-        setIsError(Math.random() < 0.5);
+        if (Math.random() < 0.5) {
+            throw new Error("Something went wrong, try again later...")
+        }
     }
 
     return (
@@ -26,8 +25,8 @@ const AppForm: React.FC<IAppForm> = ({ onSubmit, children, ...props }: IAppForm)
                 {children}
             </form >
             <AppToaster
-                title={`${isError ? "Error" : "Success"}`}
-                isError={isError}
+                title={"Success"}
+                isError={false}
                 visible={true}
             />
         </>
