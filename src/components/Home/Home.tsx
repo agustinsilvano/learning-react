@@ -8,8 +8,8 @@ import AppointmentErrorBoundary from './components/Appointment/ErrorBoundary/Err
 
 const Home: React.FC = () => {
     const INITIAL_APPOINTMENTS: Appointment[] = [
-        new Appointment("1", "Doctor", APPOINTMENT_TYPES.HEALTH_CARE, new Date(2023, 1, 10), new Date(2023, 1, 10)),
-        new Appointment("2", "Bank", APPOINTMENT_TYPES.ACCOUNTING, new Date(2023, 1, 11), new Date(2023, 1, 11))
+        new Appointment("1", "Doctor", APPOINTMENT_TYPES.HEALTH_CARE.VALUE, new Date(2023, 1, 4), new Date(2023, 1, 10)),
+        new Appointment("2", "Bank", APPOINTMENT_TYPES.ACCOUNTING.VALUE, new Date(2023, 1, 11), new Date(2023, 1, 11))
     ]
 
     const [appointments, setAppointments] = useState(INITIAL_APPOINTMENTS);

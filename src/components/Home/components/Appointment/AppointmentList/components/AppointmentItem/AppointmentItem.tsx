@@ -1,12 +1,15 @@
+import useAppointmentNeedAttention from 'hooks/useAppointmentNeedAttention';
 import { IHasTitle, IHasType } from 'interfaces/Common';
 
 
-interface IAppointmentItem extends IHasTitle, IHasType {
+export interface IAppointmentItem extends IHasTitle, IHasType {
     beginDate: Date;
     endDate: Date;
 }
 
 const AppointmentItem: React.FC<IAppointmentItem> = (props: IAppointmentItem) => {
+
+    const needAttention = useAppointmentNeedAttention(props); 
 
     return (
         <>
@@ -19,7 +22,7 @@ const AppointmentItem: React.FC<IAppointmentItem> = (props: IAppointmentItem) =>
             <div>
                 At : {props.beginDate.toString()} - {props.endDate.toString()}
             </div>
-
+            {needAttention && <h5>Need attention!</h5>}
         </>
     );
 }

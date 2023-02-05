@@ -20,12 +20,10 @@ class AppointmentErrorBoundary extends Component<IAppointmentErrorBoundaryProps,
     }
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-        debugger;
         this.setState(() => { return { hasError: true, errorMessage: error.message } });
     }
 
     render(): ReactNode {
-        debugger;
         if (this.state.hasError) {
             return <AppToaster isError={this.state.hasError} description={this.state.errorMessage}></AppToaster>
         }

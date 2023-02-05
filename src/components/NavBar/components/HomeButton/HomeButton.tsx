@@ -37,11 +37,11 @@ class HomeButton extends Component<HomeButtonProps, HomeButtonState> {
     //Equivalent to useEffect(...,[someValue])
     componentDidUpdate(prevProps: Readonly<HomeButtonProps>, prevState: Readonly<HomeButtonState>, snapshot?: any): void {
         //Circular counter, from 0 to 9.
-        if (prevState.counter == 9) {
+        if (prevState.counter === 9) {
             this.setState({ counter: 0 });
         }
 
-        if (prevState.counter % 2 == 0) console.log("Even counter");
+        if (prevState.counter % 2 === 0) console.log("Even counter");
 
     }
 
