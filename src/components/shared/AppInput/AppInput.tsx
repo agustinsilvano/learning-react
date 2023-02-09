@@ -48,31 +48,39 @@ function inputReducer(state: AppInputState, action: AppInputAction): AppInputSta
 const DEBOUNCING_RATE: number = 1000; //1 sec
 
 const AppInput: React.FC<IAppInput> = (props: IAppInput) => {
-	const initialState = new AppInputState(props.value!, true, props.isRequired!, props.validator!);
+	const initialState = new AppInputState(props.value ?? '', true, props.isRequired!, props.validator!);
 
 	const [inputState, dispatchReducer] = useReducer(inputReducer, initialState);
 
-	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		//TODO: Check how to execute this handler.
+	const onChangeHandler = (event: any) => {
 		dispatchReducer({ type: 'INPUT_CHANGED', value: event.target.value });
 
-		// props.onChange && props.onChange(event);
+		props.onChangeCustom && props.onChangeCustom(event);
 	};
 
 	const onBlurHandler = () => {
+		debugger;
 		dispatchReducer({ type: 'INPUT_BLUR' });
 	};
 
+	//Creating a constant to set the value of the state instead of using the object property as a dependency on the useEffect hook.
+	const stateValue: string = inputState.value;
+
 	useEffect(() => {
+		//Do nothing if the input has no data.
+		if (inputState.value?.trim() === '') return;
+
 		const debouncer = setTimeout(() => {
 			console.log('Performing validation...');
+			//Simulate a blur, to perform the validation.
+			dispatchReducer({ type: 'INPUT_BLUR' });
 		}, DEBOUNCING_RATE);
 
 		//Using the clean-up function to reset the timer.
 		return () => {
 			clearTimeout(debouncer);
 		};
-	}, [inputState.isValid]);
+	}, [stateValue]);
 
 	return (
 		<div className={`${!inputState.isValid ? styles.invalid : ''}`}>

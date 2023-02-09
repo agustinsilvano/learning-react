@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { ICreateEntity } from 'interfaces/Entity';
 import { Appointment } from 'models/Appointment/Appointment';
 import { CreateUpdateAppointment } from 'models/Appointment/CreateUpdateAppointment';
@@ -11,15 +11,19 @@ interface INewAppointment extends ICreateEntity {}
 
 const NewAppointment: React.FC<INewAppointment> = (props: INewAppointment) => {
 	const [title, setTitle] = useState('');
+	const [type, setType] = useState('');
 	const [beginDate, setBeginDate] = useState('');
 	const [endDate, setEndDate] = useState('');
 
-	//using ref for learning propouses. null type was added to do ref mutable object.
-	//TODO: Investigate why the useRef is not using by having the custom AppInput component.
-	const typeRef = useRef<HTMLInputElement>(null);
+	//using ref for learning propouses. null value was added to do ref mutable object.
+	// const typeRef = useRef<HTMLInputElement>(null);
 
 	const onTitleChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
 		setTitle(event.currentTarget.value);
+	};
+
+	const onTypeChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+		setType(event.currentTarget.value);
 	};
 
 	const onBeginDateChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
@@ -32,14 +36,15 @@ const NewAppointment: React.FC<INewAppointment> = (props: INewAppointment) => {
 
 	const resetInputs = () => {
 		setTitle('');
-		if (typeRef.current) typeRef.current.value = '';
+		// if (typeRef.current) typeRef.current.value = '';
+		setType('');
 		setBeginDate('');
 		setEndDate('');
 	};
 
 	const onSubmitHandler = (event: React.FormEvent<HTMLInputElement>) => {
 		event.preventDefault();
-		const type: string = typeRef.current?.value ?? '';
+		// const type: string = typeRef.current?.value ?? '';
 
 		const createAppointment = new CreateUpdateAppointment(title, type, new Date(beginDate), new Date(endDate));
 
@@ -67,18 +72,30 @@ const NewAppointment: React.FC<INewAppointment> = (props: INewAppointment) => {
 	};
 
 	return (
-		<AppForm onSubmit={onSubmitHandler}>
+		<AppForm onSubmitCustom={onSubmitHandler}>
 			<AppInput
 				title="Title"
 				type="text"
 				value={title}
-				onChange={onTitleChangeHandler}
+				onChangeCustom={onTitleChangeHandler}
 				validator={titleValidator}
 				isRequired={true}
 			/>
-			<AppInput title="Type" type="text" ref={typeRef} validator={typeValidator} isRequired={true} />
-			<AppInput title="Begin Date" type="date" value={beginDate?.toString()} onChange={onBeginDateChangeHandler} />
-			<AppInput title="End Date" type="date" value={endDate?.toString()} onChange={onEndDateChangeHandler} />
+			<AppInput
+				title="Type"
+				type="text"
+				value={type}
+				onChangeCustom={onTypeChangeHandler}
+				validator={typeValidator}
+				isRequired={true}
+			/>
+			<AppInput
+				title="Begin Date"
+				type="date"
+				value={beginDate?.toString()}
+				onChangeCustom={onBeginDateChangeHandler}
+			/>
+			<AppInput title="End Date" type="date" value={endDate?.toString()} onChangeCustom={onEndDateChangeHandler} />
 			<AppButton type="submit" />
 		</AppForm>
 	);

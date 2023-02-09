@@ -1,5 +1,3 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react';
-
 export interface IHasChildrenElement {
 	children?: React.ReactNode;
 }
@@ -10,7 +8,6 @@ export interface IHasId {
 
 export interface IHasTitle {
 	title?: string | undefined;
-	// onTitleChange: ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export interface IHasType {
@@ -51,27 +48,26 @@ export interface IHasValue {
 	value?: string;
 }
 
+export interface IIsRequired {
+	isRequired?: boolean;
+}
+
 export interface IOnChange {
-	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+	onChangeCustom?: (event: any) => void;
 }
 
 export interface IOnSubmit {
-	//TODO: Replace the `any` for the corresponding type.
-	onSubmit?: any;
+	onSubmitCustom?: (event: any) => void;
 }
 
 export interface IOnClick {
-	onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+	onClickCustom?: (event: any) => void;
 }
 
 export interface IOnSearch {
-	onSearch?: any;
+	onSearch?: (params: any) => void;
 }
 
 export interface IOnBlur {
-	onBlur?: any;
-}
-
-export interface IIsRequired {
-	isRequired?: boolean;
+	onBlurCustom?: () => void;
 }
