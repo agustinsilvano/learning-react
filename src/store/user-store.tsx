@@ -17,17 +17,22 @@ export class UserState {
 
 const INITIAL_STATE = new UserState('', [], false);
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
 	name: 'user',
 	initialState: INITIAL_STATE,
 	reducers: {
-		login(state, action) {
+		login(_, action) {
+			debugger;
 			return new UserState(action.payload.userId, action.payload.roles, true);
 		},
-		logout(state) {
+		logout(_) {
 			return INITIAL_STATE;
 		}
 	}
 });
 
+//Export the user actions.
 export const userActions = userSlice.actions;
+
+//Export the user reducers.
+export const userReducers = userSlice.reducer;

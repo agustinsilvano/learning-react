@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { themeSlice } from 'store/theme-store';
-import { userSlice } from './user-store';
+import { themeReducers } from 'store/theme-store';
+import { userReducers } from './user-store';
 
 const store = configureStore({
 	//Use object approach to let rtk to merge all the existing reducers.
-	reducer: { theme: themeSlice.reducer, user: userSlice.reducer }
+	reducer: { theme: themeReducers, user: userReducers }
 });
 
 //Check https://redux-toolkit.js.org/usage/usage-with-typescript

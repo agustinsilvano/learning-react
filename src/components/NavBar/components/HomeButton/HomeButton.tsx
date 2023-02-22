@@ -49,7 +49,7 @@ class HomeButton extends Component<HomeButtonProps, HomeButtonState> {
 	}
 }
 
-//Commenting out the functional component as we are using class based components just for learning propouses.
+//Commenting out the functional component as we are using class based components just for learning proposes.
 // const HomeButton: React.FC = () => {
 //     const onClick = () => {
 //         console.log("hey!")

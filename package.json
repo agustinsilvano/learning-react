@@ -12,6 +12,7 @@
     "@types/uuid": "^9.0.0",
     "bootstrap": "^5.2.3",
     "conventional-changelog-conventionalcommits": "^5.0.0",
+    "firebase": "^9.17.1",
     "husky": "^8.0.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
